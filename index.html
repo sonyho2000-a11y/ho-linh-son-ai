@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HO LINH SON AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand"><div class="logo">HLS</div><div><b>HO LINH SON AI</b><small>Trợ lý điều hành giáo viên Toán</small></div></div>
+  <nav>
+    <button class="nav active" data-page="dashboard">⌂ Tổng quan</button>
+    <button class="nav" data-page="classes">▦ Lớp học</button>
+    <button class="nav" data-page="lessons">▤ Bài học</button>
+    <button class="nav" data-page="students">♙ Học sinh</button>
+    <button class="nav" data-page="assignments">✓ Giao bài</button>
+    <button class="nav" data-page="analytics">⌁ Phân tích</button>
+    <button class="nav" data-page="ai">✦ Kho AI</button>
+    <button class="nav" data-page="records">▣ Hồ sơ GV</button>
+  </nav>
+  <div class="sidebar-note">Bản mẫu v1.0<br><span>Dữ liệu minh họa cục bộ</span></div>
+</aside>
+
+<main>
+<header>
+  <div><h1 id="pageTitle">Tổng quan</h1><p>Điều hành dạy học • đánh giá • phân hóa • theo dõi tiến bộ</p></div>
+  <div class="actions"><button id="themeBtn">◐</button><button class="primary" id="quickBtn">+ Tác vụ nhanh</button></div>
+</header>
+
+<section id="dashboard" class="page active">
+  <div class="hero">
+    <div><span class="eyebrow">HÔM NAY</span><h2>Chào mừng đến bảng điều hành</h2><p>Một nơi để theo dõi bài dạy, dữ liệu học sinh và các tác vụ AI.</p></div>
+    <div class="status" id="webStatus"><span></span> Đang tải Google Sheets...</div>
+  </div>
+  <div class="cards">
+    <article><label>Lớp đang quản lý</label><strong id="classCount">3</strong><small id="classLabel">10A1</small></article>
+    <article><label>Bài đang triển khai</label><strong>1</strong><small>Bài 1 – Mệnh đề</small></article>
+    <article><label>HS cần quan tâm</label><strong id="needHelp">—</strong><small>Từ dữ liệu phân tích</small></article>
+    <article><label>Tác vụ AI</label><strong>8</strong><small>Lệnh vận hành nhanh</small></article>
+  </div>
+  <div class="live-strip">
+    <div><small>Sĩ số</small><b id="liveSize">—</b></div>
+    <div><small>Hoàn thành</small><b id="liveComplete">—</b></div>
+    <div><small>Tiến bộ</small><b id="liveProgress">—</b></div>
+    <div><small>Cần xem lại</small><b id="liveReview">—</b></div>
+    <div><small>Nguồn</small><b>WEB_DATA</b></div>
+  </div>
+  <div class="grid2">
+    <article class="panel">
+      <div class="panel-head"><h3>Quy trình bài học</h3><span>10A1</span></div>
+      <div class="flow">
+        <div class="done">1<span>Dạy</span></div><i></i><div class="done">2<span>Exit Ticket</span></div><i></i>
+        <div class="done">3<span>Phân tích</span></div><i></i><div class="done">4<span>A/B/C</span></div><i></i>
+        <div class="current">5<span>Tiến bộ</span></div>
+      </div>
+      <div class="lesson"><b>Bài 1: Mệnh đề</b><span>Đã hoàn thành quy trình mẫu</span><button onclick="openPage('lessons')">Mở bài học →</button></div>
+    </article>
+    <article class="panel">
+      <div class="panel-head"><h3>Cảnh báo lớp</h3><span class="green">ỔN ĐỊNH</span></div>
+      <div class="alert"><b>Lỗi cần ưu tiên</b><strong>Mệnh đề đảo</strong><small>MD-KT06</small></div>
+      <div class="alert soft"><b>Đề xuất</b><span>Tiếp tục theo dõi dữ liệu thực tế trước khi kết luận.</span></div>
+    </article>
+  </div>
+  <div class="grid2">
+    <article class="panel"><div class="panel-head"><h3>Tác vụ nhanh</h3></div><div id="quickCommands" class="commands"></div></article>
+    <article class="panel"><div class="panel-head"><h3>Tiến độ hồ sơ</h3></div>
+      <div class="progress-row"><span>Giáo án</span><progress value="100" max="100"></progress><b>100%</b></div>
+      <div class="progress-row"><span>Forms</span><progress value="100" max="100"></progress><b>100%</b></div>
+      <div class="progress-row"><span>Dashboard</span><progress value="90" max="100"></progress><b>90%</b></div>
+      <div class="progress-row"><span>Minh chứng</span><progress value="25" max="100"></progress><b>25%</b></div>
+    </article>
+  </div>
+</section>
+
+<section id="classes" class="page">
+ <div class="section-title"><h2>Lớp học</h2><button class="primary">+ Thêm lớp</button></div>
+ <div class="class-grid">
+  <article class="class-card"><b>10A1</b><span>Toán 10 • KNTT</span><strong>50 HS</strong><button onclick="openPage('students')">Mở lớp</button></article>
+  <article class="class-card muted"><b>11A1</b><span>Toán 11</span><strong>—</strong><button>Thiết lập</button></article>
+  <article class="class-card muted"><b>12A1</b><span>Toán 12</span><strong>—</strong><button>Thiết lập</button></article>
+ </div>
+</section>
+
+<section id="lessons" class="page">
+ <div class="section-title"><h2>Bài học</h2><button class="primary">+ Bài mới</button></div>
+ <article class="panel lesson-full"><div><span class="tag">TOÁN 10 • CHƯƠNG I</span><h3>Bài 1 – Mệnh đề</h3><p>Giáo án • Slide • Exit Ticket • Phiếu A/B/C • Kết quả • Dashboard</p></div>
+ <div class="lesson-actions"><button>/DAY</button><button>/THU-BAI</button><button>/CHAM</button><button>/KET-QUA</button></div></article>
+</section>
+
+<section id="students" class="page">
+ <div class="section-title"><h2>Học sinh 10A1</h2><input id="search" placeholder="Tìm mã HS..."></div>
+ <div class="table-wrap"><table><thead><tr><th>Mã HS</th><th>Điểm đầu</th><th>Phiếu</th><th>Điểm sau</th><th>Kết quả</th></tr></thead><tbody id="studentRows"></tbody></table></div>
+</section>
+
+<section id="assignments" class="page">
+ <div class="section-title"><h2>Giao bài phân hóa</h2></div>
+ <div class="cards three">
+  <article><label>PHIẾU A</label><strong>Củng cố</strong><small>Kiến thức nền tảng</small><button>Giao qua Classroom</button></article>
+  <article><label>PHIẾU B</label><strong>Luyện tập</strong><small>Giải thích và lập luận</small><button>Giao qua Classroom</button></article>
+  <article><label>PHIẾU C</label><strong>Vận dụng</strong><small>Kiểm chứng và mở rộng</small><button>Giao qua Classroom</button></article>
+ </div>
+</section>
+
+<section id="analytics" class="page">
+ <div class="section-title"><h2>Phân tích</h2></div>
+ <div class="grid2">
+  <article class="panel"><h3>Mã lỗi kiến thức</h3><div class="bars" id="bars"></div></article>
+  <article class="panel"><h3>Luồng dữ liệu</h3><ol class="pipeline"><li>Google Forms</li><li>PHAN_TICH_HS</li><li>Phiếu A/B/C</li><li>Điểm sau can thiệp</li><li>DASHBOARD_10A1</li><li>THEO_DOI_TIEN_BO_10A1</li></ol></article>
+ </div>
+</section>
+
+<section id="ai" class="page">
+ <div class="section-title"><h2>Kho lệnh AI</h2><input id="cmdSearch" placeholder="Tìm lệnh..."></div>
+ <div id="aiCommands" class="command-grid"></div>
+</section>
+
+<section id="records" class="page">
+ <div class="section-title"><h2>Hồ sơ giáo viên</h2></div>
+ <div class="folder-grid">
+  <article>01_GIAO_AN<span>Kế hoạch bài dạy</span></article><article>02_SLIDE<span>Trình chiếu</span></article>
+  <article>03_HOC_LIEU_HS<span>Tài liệu học sinh</span></article><article>04_EXIT_TICKET<span>Đánh giá cuối bài</span></article>
+  <article>05_PHAN_HOA<span>Phiếu A/B/C</span></article><article>06_KET_QUA<span>Sheets phân tích</span></article>
+  <article>07_DASHBOARD<span>Bảng điều hành</span></article><article>08_BAO_CAO<span>Báo cáo & minh chứng</span></article>
+ </div>
+</section>
+</main>
+
+<div id="modal" class="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><h3>Tác vụ nhanh</h3><p>Chọn lệnh, hệ thống sẽ sao chép cú pháp để dùng với ChatGPT.</p><div id="modalCommands" class="commands"></div></div></div>
+<div id="toast" class="toast">Đã sao chép lệnh</div>
+<script src="app.js"></script>
+</body></html>
