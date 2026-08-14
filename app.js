@@ -94,6 +94,18 @@ async function loadWebData(){
     setText('liveComplete', d.HOAN_THANH);
     setText('liveProgress', d.TIEN_BO);
     setText('liveReview', d.CAN_XEM_LAI);
+    setText('avgBefore', d.DIEM_TB_TRUOC); setText('avgAfter', d.DIEM_TB_SAU);
+    setText('scoreBefore', d.DIEM_TB_TRUOC); setText('scoreAfter', d.DIEM_TB_SAU);
+    const rr=parseFloat(String(d.TY_LE_TIEN_BO||'0').replace(',','.'));
+    setText('progressRate', isNaN(rr)?'—':(rr<=1?Math.round(rr*100):Math.round(rr))+'%');
+    setText('topError', d.LOI_PHO_BIEN);
+    const names={'MD-KT01':'Nhận biết mệnh đề','MD-KT03':'Mệnh đề phủ định','MD-KT06':'Mệnh đề đảo','MD-KT07':'Mệnh đề tương đương','MD-KT08':'Kí hiệu ∀, ∃'};
+    setText('topErrorName',names[d.LOI_PHO_BIEN]||'Mã lỗi kiến thức');
+    const a=+d.PHIEU_A||0,b=+d.PHIEU_B||0,c=+d.PHIEU_C||0,t=Math.max(a+b+c,1);
+    setText('countA',a);setText('countB',b);setText('countC',c);
+    document.getElementById('barA').style.width=a/t*100+'%';document.getElementById('barB').style.width=b/t*100+'%';document.getElementById('barC').style.width=c/t*100+'%';
+    const bef=parseFloat(String(d.DIEM_TB_TRUOC||0).replace(',','.'))||0,aft=parseFloat(String(d.DIEM_TB_SAU||0).replace(',','.'))||0;
+    document.getElementById('scoreBarBefore').style.width=Math.min(bef*10,100)+'%';document.getElementById('scoreBarAfter').style.width=Math.min(aft*10,100)+'%';
     if(st){st.classList.remove('error');st.classList.add('ok');st.innerHTML='<span></span> Google Sheets đã kết nối';}
   } catch(err) {
     console.error(err);

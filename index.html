@@ -46,7 +46,30 @@
     <div><small>Cần xem lại</small><b id="liveReview">—</b></div>
     <div><small>Nguồn</small><b>WEB_DATA</b></div>
   </div>
+  <div class="v3-grid">
+    <article class="v3-card"><small>Điểm TB trước</small><strong id="avgBefore">—</strong><span>Exit Ticket</span></article>
+    <article class="v3-card"><small>Điểm TB sau</small><strong id="avgAfter">—</strong><span>Sau can thiệp</span></article>
+    <article class="v3-card"><small>Tỷ lệ tiến bộ</small><strong id="progressRate">—</strong><span>HS đã đánh giá lại</span></article>
+    <article class="v3-card warning"><small>Lỗi phổ biến</small><strong id="topError">—</strong><span id="topErrorName">Chờ dữ liệu</span></article>
+  </div>
   <div class="grid2">
+    <article class="panel">
+      <div class="panel-head"><h3>Phân bố Phiếu A/B/C</h3><span>DỮ LIỆU THẬT</span></div>
+      <div class="abc-chart">
+        <div><b>Phiếu A</b><div class="abc-track"><i id="barA"></i></div><strong id="countA">—</strong></div>
+        <div><b>Phiếu B</b><div class="abc-track"><i id="barB"></i></div><strong id="countB">—</strong></div>
+        <div><b>Phiếu C</b><div class="abc-track"><i id="barC"></i></div><strong id="countC">—</strong></div>
+      </div>
+    </article>
+    <article class="panel">
+      <div class="panel-head"><h3>So sánh trước – sau</h3><span>ĐIỂM TB</span></div>
+      <div class="score-compare">
+        <div><span>Trước</span><b id="scoreBefore">—</b><div class="score-track"><i id="scoreBarBefore"></i></div></div>
+        <div><span>Sau</span><b id="scoreAfter">—</b><div class="score-track"><i id="scoreBarAfter"></i></div></div>
+      </div>
+    </article>
+  </div>
+
     <article class="panel">
       <div class="panel-head"><h3>Quy trình bài học</h3><span>10A1</span></div>
       <div class="flow">
