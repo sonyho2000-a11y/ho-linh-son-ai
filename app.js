@@ -112,5 +112,22 @@ async function loadWebData(){
     if(st){st.classList.remove('ok');st.classList.add('error');st.innerHTML='<span></span> Chưa đọc được WEB_DATA';}
   }
 }
-loadWebData();
-setInterval(loadWebData, 60000);
+// V4 multi-lesson loader below
+
+
+const WEB_DATA_ALL_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vSfBMrYbOzc-gT9fxprbxLf6oGyz7uLpdn9m4v8XFBBBvUuWIhrlz9IxKtjGoAh6mdyoPc_3wP3_Kzt/pub?gid=182385284&single=true&output=csv';
+let lessonRows=[];
+function csvRows(t){let a=[],r=[],c='',q=false;for(let i=0;i<t.length;i++){let x=t[i];if(x=='"'){if(q&&t[i+1]=='"'){c+='"';i++;}else q=!q;}else if(x==','&&!q){r.push(c);c='';}else if((x=='\n'||x=='\r')&&!q){if(x=='\r'&&t[i+1]=='\n')i++;r.push(c);c='';if(r.some(v=>v!==''))a.push(r);r=[];}else c+=x;}if(c||r.length){r.push(c);a.push(r)}return a}
+function nh(s){return String(s||'').trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/Đ/g,'D').replace(/[^A-Z0-9_]/g,'_').replace(/_+/g,'_')}
+function showLesson(d){
+ setText('selectedCode',d.MA_BAI);setText('selectedClass',d.LOP);setText('classLabel',d.LOP);setText('currentLessonName',d.TEN_BAI);
+ setText('liveSize',d.SI_SO);setText('needHelp',d.HS_CAN_QUAN_TAM);setText('liveComplete',d.HOAN_THANH);setText('liveProgress',d.TIEN_BO);setText('liveReview',d.CAN_XEM_LAI);
+ setText('avgBefore',d.DIEM_TB_TRUOC);setText('avgAfter',d.DIEM_TB_SAU);setText('scoreBefore',d.DIEM_TB_TRUOC);setText('scoreAfter',d.DIEM_TB_SAU);
+ let den=(+d.TIEN_BO||0)+(+d.CAN_XEM_LAI||0);setText('progressRate',(den?Math.round((+d.TIEN_BO||0)/den*100):0)+'%');
+ setText('topError',d.LOI_PHO_BIEN);let nm={'MD-KT01':'Nhận biết mệnh đề','MD-KT03':'Mệnh đề phủ định','MD-KT06':'Mệnh đề đảo','MD-KT07':'Mệnh đề tương đương','MD-KT08':'Kí hiệu ∀, ∃'};setText('topErrorName',nm[d.LOI_PHO_BIEN]||'Mã lỗi kiến thức');
+ let a=+d.PHIEU_A||0,b=+d.PHIEU_B||0,c=+d.PHIEU_C||0,t=Math.max(a+b+c,1);setText('countA',a);setText('countB',b);setText('countC',c);barA.style.width=a/t*100+'%';barB.style.width=b/t*100+'%';barC.style.width=c/t*100+'%';
+ let x=parseFloat(d.DIEM_TB_TRUOC)||0,y=parseFloat(d.DIEM_TB_SAU)||0;scoreBarBefore.style.width=Math.min(x*10,100)+'%';scoreBarAfter.style.width=Math.min(y*10,100)+'%';
+ webStatus.classList.remove('error');webStatus.classList.add('ok');webStatus.innerHTML='<span></span> WEB_DATA_ALL đã kết nối';
+}
+async function loadLessons(){try{let res=await fetch(WEB_DATA_ALL_URL+'&_='+Date.now(),{cache:'no-store'});let tb=csvRows(await res.text()),h=tb[0].map(nh);lessonRows=tb.slice(1).map(r=>{let o={};h.forEach((k,i)=>o[k]=String(r[i]??'').trim());return o}).filter(o=>o.MA_BAI);lessonSelect.innerHTML='';lessonRows.forEach((d,i)=>{let o=document.createElement('option');o.value=i;o.textContent=d.MA_BAI+' – '+d.TEN_BAI;lessonSelect.appendChild(o)});lessonSelect.onchange=()=>showLesson(lessonRows[+lessonSelect.value]);showLesson(lessonRows[0]);}catch(e){console.error(e);webStatus.classList.add('error');webStatus.innerHTML='<span></span> Chưa đọc được WEB_DATA_ALL';}}
+loadLessons();setInterval(loadLessons,60000);

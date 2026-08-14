@@ -29,13 +29,18 @@
 </header>
 
 <section id="dashboard" class="page active">
+  <div class="lesson-selector">
+    <div><small>DASHBOARD NHIỀU BÀI</small><label>Chọn bài học</label></div>
+    <select id="lessonSelect"><option>Đang tải dữ liệu...</option></select>
+    <div class="selected-meta"><span id="selectedCode">—</span><b id="selectedClass">—</b></div>
+  </div>
   <div class="hero">
     <div><span class="eyebrow">HÔM NAY</span><h2>Chào mừng đến bảng điều hành</h2><p>Một nơi để theo dõi bài dạy, dữ liệu học sinh và các tác vụ AI.</p></div>
     <div class="status" id="webStatus"><span></span> Đang tải Google Sheets...</div>
   </div>
   <div class="cards">
     <article><label>Lớp đang quản lý</label><strong id="classCount">3</strong><small id="classLabel">10A1</small></article>
-    <article><label>Bài đang triển khai</label><strong>1</strong><small>Bài 1 – Mệnh đề</small></article>
+    <article><label>Bài đang triển khai</label><strong>1</strong><small id="currentLessonName">Bài 1 – Mệnh đề</small></article>
     <article><label>HS cần quan tâm</label><strong id="needHelp">—</strong><small>Từ dữ liệu phân tích</small></article>
     <article><label>Tác vụ AI</label><strong>8</strong><small>Lệnh vận hành nhanh</small></article>
   </div>
