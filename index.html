@@ -30,8 +30,15 @@
 
 <section id="dashboard" class="page active">
   <div class="lesson-selector">
-    <div><small>DASHBOARD NHIỀU BÀI</small><label>Chọn bài học</label></div>
-    <select id="lessonSelect"><option>Đang tải dữ liệu...</option></select>
+    <div><small>DASHBOARD NHIỀU LỚP • NHIỀU BÀI</small><label>Điều hành dạy học</label></div>
+    <div class="filter-group">
+      <label for="classSelect">Chọn lớp</label>
+      <select id="classSelect"><option>Đang tải...</option></select>
+    </div>
+    <div class="filter-group">
+      <label for="lessonSelect">Chọn bài học</label>
+      <select id="lessonSelect"><option>Đang tải...</option></select>
+    </div>
     <div class="selected-meta"><span id="selectedCode">—</span><b id="selectedClass">—</b></div>
   </div>
   <div class="hero">
@@ -49,7 +56,7 @@
     <div><small>Hoàn thành</small><b id="liveComplete">—</b></div>
     <div><small>Tiến bộ</small><b id="liveProgress">—</b></div>
     <div><small>Cần xem lại</small><b id="liveReview">—</b></div>
-    <div><small>Nguồn</small><b>WEB_DATA</b></div>
+    <div><small>Nguồn</small><b>WEB_DATA_ALL</b></div>
   </div>
   <div class="v3-grid">
     <article class="v3-card"><small>Điểm TB trước</small><strong id="avgBefore">—</strong><span>Exit Ticket</span></article>
