@@ -138,6 +138,12 @@ function showLesson(d){
  document.getElementById('scoreBarBefore').style.width=Math.min(x*10,100)+'%';document.getElementById('scoreBarAfter').style.width=Math.min(y*10,100)+'%';
  const sourceEls=[...document.querySelectorAll('*')].filter(el=>el.children.length===0 && el.textContent.trim()==='WEB_DATA');
  sourceEls.forEach(el=>el.textContent='WEB_DATA_ALL');
+ const cr=+d.CHECKLIST_SAN_SANG||0,cp=+d.CHECKLIST_DA_CHUAN_BI||0,cm=+d.CHECKLIST_CHUA_CO||0;
+ let cpct=parseFloat(String(d.CHECKLIST_TY_LE||'').replace(',','.').replace('%','')); if(!isNaN(cpct)&&cpct<=1)cpct*=100; if(isNaN(cpct))cpct=cr/14*100;
+ setText('checkReady',cr);setText('checkReadyCount',cr);setText('checkPreparedCount',cp);setText('checkMissingCount',cm);setText('checkRate',cpct.toFixed(2).replace('.',',')+'%');
+ if(document.getElementById('checkBar'))document.getElementById('checkBar').style.width=Math.min(Math.max(cpct,0),100)+'%';
+ const concl=d.CHECKLIST_KET_LUAN||'Chưa có kết luận',al=d.CHECKLIST_CANH_BAO||'Chưa có cảnh báo';setText('checkConclusion',concl);setText('checkAlert',al);
+ const ce=document.getElementById('checkConclusion'),ae=document.getElementById('checkAlert');[ce,ae].forEach(e=>e&&e.classList.remove('good','warn','bad'));let cls=cm>0?'bad':(cp>0?'warn':'good');if(ce)ce.classList.add(cls);if(ae)ae.classList.add(cls);
  const st=document.getElementById('webStatus');if(st){st.classList.remove('error');st.classList.add('ok');st.innerHTML='<span></span> WEB_DATA_ALL đã kết nối';}
 }
 
